@@ -40,7 +40,7 @@ const Register = () => {
     try{
       const response = await axiosInstance.post("/register", {
         username: username,
-        fullName: full_name,
+        full_name: full_name,
         email: email,
         password: password,
       });
