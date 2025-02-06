@@ -73,7 +73,7 @@ app.post('/register', async (req, res) =>{
 
     await user.save();
 
-    const accessToken = jwt.sign({user}, process.env.ACCESS, {
+    const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: "36000m",
     })
     res.json({

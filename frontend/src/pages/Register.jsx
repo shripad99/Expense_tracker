@@ -6,7 +6,7 @@ import axiosInstance from '../utils/axiosInstance';
 
 const Register = () => {
   const [username, setUsername] = useState("")
-  const [name, setName] = useState("");
+  const [full_name, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -20,8 +20,8 @@ const Register = () => {
       return;
     }
 
-    if(!name){
-      setError("Please enter a valid name");
+    if(!full_name){
+      setError("Please enter a valid full name");
       return;
     }
 
@@ -40,7 +40,7 @@ const Register = () => {
     try{
       const response = await axiosInstance.post("/register", {
         username: username,
-        fullName: name,
+        fullName: full_name,
         email: email,
         password: password,
       });
@@ -55,9 +55,10 @@ const Register = () => {
       }
     }catch(error){
       if (error.response && error.response.data && error.response.data.message){
+        console.log("Server Error", error.response.data.message);
         setError(error.response.data.message);
       } else {
-        console.log(error)
+        console.log(error);
         setError("An unexpected error occured. Please try again.")
       }
     }
@@ -69,7 +70,7 @@ const Register = () => {
         <form onSubmit={handleSignUp}>
           <h4 className='text-2xl mb-7'>SignUp</h4>
           <input type='text' placeholder='Username' className='w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none' value={username} onChange={(e) => setUsername(e.target.value)} />
-          <input type='text' placeholder='Full name' className='w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none' value={name} onChange={(e) => setName(e.target.value)} />
+          <input type='text' placeholder='Full name' className='w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none' value={full_name} onChange={(e) => setFullName(e.target.value)} />
           <input type='text' placeholder='Email' className='w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none' value={email} onChange={(e) => setEmail(e.target.value)} />
           <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)}/>
             {error && <p className='text-red-500 text-xs pb-1'>{error}</p>}
