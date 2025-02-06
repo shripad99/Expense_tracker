@@ -58,7 +58,7 @@ const Dashboard = () => {
           {allExpenses.length > 0 ? (
             allExpenses.map((expense, index) => (
               <li key={expense._id} className='flex justify-between border items-center border-gray-200 py-4 px-3 rounded bg-[#f3f4f6] mt-3 shadow-md'>
-                <span className='text-green-600'>{expense.expense_name}</span>
+                <span className='text-green-600 w-[20%]'>{expense.expense_name}</span>
                 <span>{expense.amount}</span>
                 {/* <span>{new Date(expense.date).toLocaleDateString('en-GB')}</span> */}
                 <p className='text-2xl flex gap-2'>
